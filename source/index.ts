@@ -1,4 +1,5 @@
 // external
+import Errlop from 'errlop'
 import { readFile, writeFile, deleteFile } from '@bevry/file'
 
 /** Help the JSON parser serialize the object to JSON string. */
@@ -37,24 +38,40 @@ export function json<T>(data: T): T {
 
 /** Deserialize a JSON object. */
 export function fromJSON<T>(data: string): T {
-	return JSON.parse(data, reviver)
+	try {
+		return JSON.parse(data, reviver)
+	} catch (err) {
+		throw new Errlop(`failed to deserialize the json `, err)
+	}
 }
 
 /** Serialize a JSON object. */
 export function toJSON<T>(data: T): string {
-	return JSON.stringify(data, replacer, '  ')
+	try {
+		return JSON.stringify(data, replacer, '  ')
+	} catch (err) {
+		throw new Errlop(`failed to serialize the json `, err)
+	}
 }
 
 /** Write a JSON file that will be serialized with {@link toJSON}. */
 export async function writeJSON<T>(path: string, data: T): Promise<void> {
-	const contents = toJSON<T>(data)
-	await writeFile(path, contents)
+	try {
+		const contents = toJSON<T>(data)
+		await writeFile(path, contents)
+	} catch (err) {
+		throw new Errlop(`failed to write the json for the file: ${path}`, err)
+	}
 }
 
 /** Read a JSON file that was serialized with {@link toJSON}. */
 export async function readJSON<T>(path: string): Promise<T> {
-	const data = await readFile(path)
-	return fromJSON<T>(data)
+	try {
+		const data = await readFile(path)
+		return fromJSON<T>(data)
+	} catch (err) {
+		throw new Errlop(`failed to read the json for the file: ${path}`, err)
+	}
 }
 
 /** Delete a JSON file. */

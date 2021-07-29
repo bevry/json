@@ -1,5 +1,10 @@
 # History
 
+## v1.4.0 2021 July 30
+
+-   Better error reporting
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v1.3.0 2021 July 30
 
 -   TypeScript generics so you can specify the type of data you are working with.
