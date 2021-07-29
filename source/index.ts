@@ -1,5 +1,5 @@
 // external
-import { readFile, writeFile } from 'fs'
+import { readFile, writeFile, deleteFile } from '@bevry/file'
 
 /** Help the JSON parser serialize the object to JSON string. */
 function replacer(key: string, value: any) {
@@ -31,39 +31,33 @@ function reviver(key: string, value: any) {
 }
 
 /** Clone/dereference a JSON object. */
-export function json(data: any) {
+export function json<T>(data: T): T {
 	return fromJSON(toJSON(data))
 }
 
 /** Deserialize a JSON object. */
-export function fromJSON(data: any) {
+export function fromJSON<T>(data: string): T {
 	return JSON.parse(data, reviver)
 }
 
 /** Serialize a JSON object. */
-export function toJSON(data: any) {
+export function toJSON<T>(data: T): string {
 	return JSON.stringify(data, replacer, '  ')
 }
 
 /** Write a JSON file that will be serialized with {@link toJSON}. */
-export function writeJSON(path: string, data: any) {
-	return new Promise(function (resolve, reject) {
-		writeFile(path, toJSON(data), function (err) {
-			if (err) return reject(err)
-			resolve(null)
-		})
-	})
+export async function writeJSON<T>(path: string, data: T): Promise<void> {
+	const contents = toJSON<T>(data)
+	await writeFile(path, contents)
 }
 
 /** Read a JSON file that was serialized with {@link toJSON}. */
-export async function readJSON(
-	path: string,
-	encoding: BufferEncoding = 'utf8'
-) {
-	return new Promise(function (resolve, reject) {
-		readFile(path, encoding, function (err, data) {
-			if (err) return reject(err)
-			resolve(fromJSON(data))
-		})
-	})
+export async function readJSON<T>(path: string): Promise<T> {
+	const data = await readFile(path)
+	return fromJSON<T>(data)
+}
+
+/** Delete a JSON file. */
+export function deleteJSON(path: string): Promise<void> {
+	return deleteFile(path)
 }

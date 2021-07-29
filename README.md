@@ -52,7 +52,7 @@ Helpers for reading and writing JSON.
 
 ``` html
 <script type="module">
-    import * as pkg from '//cdn.skypack.dev/@bevry/json@^1.2.0'
+    import * as pkg from '//cdn.skypack.dev/@bevry/json@^1.3.0'
 </script>
 ```
 
@@ -60,7 +60,7 @@ Helpers for reading and writing JSON.
 
 ``` html
 <script type="module">
-    import * as pkg from '//unpkg.com/@bevry/json@^1.2.0'
+    import * as pkg from '//unpkg.com/@bevry/json@^1.3.0'
 </script>
 ```
 
@@ -68,7 +68,7 @@ Helpers for reading and writing JSON.
 
 ``` html
 <script type="module">
-    import * as pkg from '//dev.jspm.io/@bevry/json@1.2.0'
+    import * as pkg from '//dev.jspm.io/@bevry/json@1.3.0'
 </script>
 ```
 

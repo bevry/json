@@ -1,9 +1,11 @@
 import { deepEqual } from 'assert-helpers'
 import kava from 'kava'
-import { json } from './index.js'
+import { tmpdir } from 'os'
+import { join } from 'path'
+import { json, readJSON, writeJSON, deleteJSON } from './index.js'
 
 kava.suite('@bevry/json', function (suite, test) {
-	test('works as expected', function () {
+	test('serialising works as expected', function () {
 		const expected = {
 			a: 1,
 			b: 'b',
@@ -24,5 +26,17 @@ kava.suite('@bevry/json', function (suite, test) {
 		}
 		const actual = json(expected)
 		deepEqual(actual, expected, 'was as expected')
+	})
+	test('fs works as expected', function (done) {
+		Promise.resolve()
+			.then(async function () {
+				const tmp = join(tmpdir(), 'bevry-file.txt')
+				await deleteJSON(tmp) // ensure it does not exist, should not fail if it does not exist
+				const data = { a: 1 }
+				await writeJSON(tmp, data)
+				deepEqual(await readJSON(tmp), data, 'has the data we expected')
+				await deleteJSON(tmp)
+			})
+			.finally(done)
 	})
 })
