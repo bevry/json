@@ -5,7 +5,7 @@ import { join } from 'path'
 import { json, readJSON, writeJSON, deleteJSON } from './index.js'
 
 kava.suite('@bevry/json', function (suite, test) {
-	test('serialising works as expected', function () {
+	test('serializing works as expected', function () {
 		const expected = {
 			a: 1,
 			b: 'b',

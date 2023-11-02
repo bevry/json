@@ -40,7 +40,7 @@ export function json<T>(data: T): T {
 export function fromJSON<T>(data: string): T {
 	try {
 		return JSON.parse(data, reviver)
-	} catch (err) {
+	} catch (err: any) {
 		throw new Errlop(`failed to deserialize the json `, err)
 	}
 }
@@ -49,7 +49,7 @@ export function fromJSON<T>(data: string): T {
 export function toJSON<T>(data: T): string {
 	try {
 		return JSON.stringify(data, replacer, '  ')
-	} catch (err) {
+	} catch (err: any) {
 		throw new Errlop(`failed to serialize the json `, err)
 	}
 }
@@ -59,7 +59,7 @@ export async function writeJSON<T>(path: string, data: T): Promise<void> {
 	try {
 		const contents = toJSON<T>(data)
 		await writeFile(path, contents)
-	} catch (err) {
+	} catch (err: any) {
 		throw new Errlop(`failed to write the json for the file: ${path}`, err)
 	}
 }
@@ -69,7 +69,7 @@ export async function readJSON<T>(path: string): Promise<T> {
 	try {
 		const data = await readFile(path)
 		return fromJSON<T>(data)
-	} catch (err) {
+	} catch (err: any) {
 		throw new Errlop(`failed to read the json for the file: ${path}`, err)
 	}
 }
