@@ -34,7 +34,7 @@ Helpers for reading and writing JSON.
 
 ## Usage
 
-[Complete API Documentation.](http://master.json.bevry.surge.sh/docs/)
+[Complete API Documentation.](http://main.json.bevry.surge.sh/docs/)
 
 <!-- INSTALL/ -->
 
@@ -51,7 +51,7 @@ Helpers for reading and writing JSON.
 
 ``` html
 <script type="module">
-    import * as pkg from '//cdn.skypack.dev/@bevry/json@^1.5.0'
+    import * as pkg from '//cdn.skypack.dev/@bevry/json@^1.6.0'
 </script>
 ```
 
@@ -59,7 +59,7 @@ Helpers for reading and writing JSON.
 
 ``` html
 <script type="module">
-    import * as pkg from '//unpkg.com/@bevry/json@^1.5.0'
+    import * as pkg from '//unpkg.com/@bevry/json@^1.6.0'
 </script>
 ```
 
@@ -67,7 +67,7 @@ Helpers for reading and writing JSON.
 
 ``` html
 <script type="module">
-    import * as pkg from '//dev.jspm.io/@bevry/json@1.5.0'
+    import * as pkg from '//dev.jspm.io/@bevry/json@1.6.0'
 </script>
 ```
 
@@ -75,12 +75,11 @@ Helpers for reading and writing JSON.
 
 <p>This package is published with the following editions:</p>
 
-<ul><li><code>@bevry/json</code> aliases <code>@bevry/json/index.cjs</code> which uses the <a href="https://github.com/bevry/editions" title="You can use the Editions Autoloader to autoload the appropriate edition for your consumers environment">Editions Autoloader</a> to automatically select the correct edition for the consumer's environment</li>
-<li><code>@bevry/json/source/index.ts</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> source code with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li>
+<ul><li><code>@bevry/json/source/index.ts</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> source code with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li>
 <li><code>@bevry/json/edition-browsers/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2022 for web browsers with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li>
-<li><code>@bevry/json/edition-es2022/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2022 for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> 10 || 12 || 14 || 18 || 20 || 21 with <a href="https://nodejs.org/dist/latest-v5.x/docs/api/modules.html" title="Node/CJS Modules">Require</a> for modules</li>
-<li><code>@bevry/json/edition-es2021/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2021 for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> 10 || 12 || 14 || 16 || 18 || 20 || 21 with <a href="https://nodejs.org/dist/latest-v5.x/docs/api/modules.html" title="Node/CJS Modules">Require</a> for modules</li>
-<li><code>@bevry/json/edition-es2021-esm/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2021 for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> 12 || 14 || 16 || 18 || 20 || 21 with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li></ul>
+<li><code>@bevry/json</code> aliases <code>@bevry/json/edition-es2022/index.js</code></li>
+<li><code>@bevry/json/edition-es2022/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2022 for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> 10 || 12 || 14 || 16 || 18 || 20 || 21 with <a href="https://nodejs.org/dist/latest-v5.x/docs/api/modules.html" title="Node/CJS Modules">Require</a> for modules</li>
+<li><code>@bevry/json/edition-es2022-esm/index.js</code> is <a href="https://www.typescriptlang.org/" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. ">TypeScript</a> compiled against ES2022 for <a href="https://nodejs.org" title="Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine">Node.js</a> 12 || 14 || 16 || 18 || 20 || 21 with <a href="https://babeljs.io/docs/learn-es2015/#modules" title="ECMAScript Modules">Import</a> for modules</li></ul>
 
 <!-- /INSTALL -->
 
