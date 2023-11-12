@@ -30,7 +30,7 @@ kava.suite('@bevry/json', function (suite, test) {
 	test('fs works as expected', function (done) {
 		Promise.resolve()
 			.then(async function () {
-				const tmp = join(tmpdir(), 'bevry-file.txt')
+				const tmp = join(tmpdir(), `bevry-json-${Math.random()}.txt`)
 				await deleteJSON(tmp) // ensure it does not exist, should not fail if it does not exist
 				const data = { a: 1 }
 				await writeJSON(tmp, data)
