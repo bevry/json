@@ -1,6 +1,8 @@
 // external
 import Errlop from 'errlop'
-import { readFile, writeFile, deleteFile } from '@bevry/file'
+import read from '@bevry/fs-read'
+import write from '@bevry/fs-write'
+import unlink from '@bevry/fs-unlink'
 
 /** Help the JSON parser serialize the object to JSON string. */
 function replacer(key: string, value: any) {
@@ -58,7 +60,7 @@ export function toJSON<T>(data: T): string {
 export async function writeJSON<T>(path: string, data: T): Promise<void> {
 	try {
 		const contents = toJSON<T>(data)
-		await writeFile(path, contents)
+		await write(path, contents)
 	} catch (err: any) {
 		throw new Errlop(`failed to write the json for the file: ${path}`, err)
 	}
@@ -67,7 +69,7 @@ export async function writeJSON<T>(path: string, data: T): Promise<void> {
 /** Read a JSON file that was serialized with {@link toJSON}. */
 export async function readJSON<T>(path: string): Promise<T> {
 	try {
-		const data = await readFile(path)
+		const data = await read(path)
 		return fromJSON<T>(data)
 	} catch (err: any) {
 		throw new Errlop(`failed to read the json for the file: ${path}`, err)
@@ -76,5 +78,5 @@ export async function readJSON<T>(path: string): Promise<T> {
 
 /** Delete a JSON file. */
 export function deleteJSON(path: string): Promise<void> {
-	return deleteFile(path)
+	return unlink(path)
 }
