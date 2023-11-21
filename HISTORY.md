@@ -1,5 +1,9 @@
 # History
 
+## v1.10.0 2023 November 21
+
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v1.9.0 2023 November 17
 
 -   Use the new `@bevry/fs-*` dependencies
