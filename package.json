@@ -1,12 +1,13 @@
 {
   "name": "@bevry/json",
-  "version": "1.10.0",
+  "version": "2.0.0",
   "description": "Helpers for reading and writing JSON.",
   "homepage": "https://github.com/bevry/json",
   "license": "Artistic-2.0",
   "keywords": [
     "browser",
     "ecmascript",
+    "es2016",
     "es2022",
     "from",
     "module",
@@ -75,7 +76,7 @@
     "url": "https://github.com/bevry/json.git"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=4"
   },
   "editions": [
     {
@@ -104,7 +105,7 @@
       }
     },
     {
-      "description": "TypeScript compiled against ES2022 for Node.js 10 || 12 || 14 || 16 || 18 || 20 || 21 with Require for modules",
+      "description": "TypeScript compiled against ES2022 for Node.js 8 || 10 || 12 || 14 || 16 || 18 || 20 || 21 with Require for modules",
       "directory": "edition-es2022",
       "entry": "index.js",
       "tags": [
@@ -114,7 +115,22 @@
         "require"
       ],
       "engines": {
-        "node": "10 || 12 || 14 || 16 || 18 || 20 || 21",
+        "node": "8 || 10 || 12 || 14 || 16 || 18 || 20 || 21",
+        "browsers": false
+      }
+    },
+    {
+      "description": "TypeScript compiled against ES2016 for Node.js 4 || 6 || 8 || 10 || 12 || 14 || 16 || 18 || 20 || 21 with Require for modules",
+      "directory": "edition-es2016",
+      "entry": "index.js",
+      "tags": [
+        "compiled",
+        "javascript",
+        "es2016",
+        "require"
+      ],
+      "engines": {
+        "node": "4 || 6 || 8 || 10 || 12 || 14 || 16 || 18 || 20 || 21",
         "browsers": false
       }
     },
@@ -147,11 +163,12 @@
   ],
   "types": "edition-types/index.d.ts",
   "type": "module",
-  "main": "edition-es2022/index.js",
+  "main": "index.cjs",
   "exports": {
     "node": {
       "types": "./edition-types/index.d.ts",
       "import": "./edition-es2022-esm/index.js",
+      "default": "./index.cjs",
       "require": "./edition-es2022/index.js"
     },
     "browser": {
@@ -162,34 +179,37 @@
   "browser": "edition-browsers/index.js",
   "module": "edition-browsers/index.js",
   "dependencies": {
-    "@bevry/fs-read": "^1.1.0",
-    "@bevry/fs-unlink": "^1.1.0",
-    "@bevry/fs-write": "^1.1.0",
+    "@bevry/fs-read": "^1.2.0",
+    "@bevry/fs-unlink": "^1.2.0",
+    "@bevry/fs-write": "^1.2.0",
+    "editions": "^6.13.0",
     "errlop": "^7.3.0"
   },
   "devDependencies": {
     "@bevry/update-contributors": "^1.23.0",
-    "@types/node": "^20.9.3",
+    "@types/node": "^20.9.4",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",
     "assert-helpers": "^11.5.0",
     "eslint": "^8.54.0",
-    "eslint-config-bevry": "^5.0.0",
+    "eslint-config-bevry": "^5.1.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "kava": "^7.3.0",
     "prettier": "^3.1.0",
-    "projectz": "^3.2.0",
+    "projectz": "^3.3.0",
+    "promise-errback": "^1.0.0",
     "surge": "^0.23.1",
     "typedoc": "^0.25.3",
     "typescript": "5.2.2",
-    "valid-directory": "^4.4.0",
-    "valid-module": "^2.4.0"
+    "valid-directory": "^4.5.0",
+    "valid-module": "^2.5.0"
   },
   "scripts": {
     "our:clean": "rm -rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
-    "our:compile": "npm run our:compile:edition-browsers && npm run our:compile:edition-es2022 && npm run our:compile:edition-es2022-esm && npm run our:compile:edition-types",
+    "our:compile": "npm run our:compile:edition-browsers && npm run our:compile:edition-es2016 && npm run our:compile:edition-es2022 && npm run our:compile:edition-es2022-esm && npm run our:compile:edition-types",
     "our:compile:edition-browsers": "tsc --module ESNext --target ES2022 --outDir ./edition-browsers --project tsconfig.json && ( test ! -d edition-browsers/source || ( mv edition-browsers/source edition-temp && rm -rf edition-browsers && mv edition-temp edition-browsers ) )",
+    "our:compile:edition-es2016": "tsc --module commonjs --target ES2016 --outDir ./edition-es2016 --project tsconfig.json && ( test ! -d edition-es2016/source || ( mv edition-es2016/source edition-temp && rm -rf edition-es2016 && mv edition-temp edition-es2016 ) ) && printf '%s' '{\"type\": \"commonjs\"}' > edition-es2016/package.json",
     "our:compile:edition-es2022": "tsc --module commonjs --target ES2022 --outDir ./edition-es2022 --project tsconfig.json && ( test ! -d edition-es2022/source || ( mv edition-es2022/source edition-temp && rm -rf edition-es2022 && mv edition-temp edition-es2022 ) ) && printf '%s' '{\"type\": \"commonjs\"}' > edition-es2022/package.json",
     "our:compile:edition-es2022-esm": "tsc --module ESNext --target ES2022 --outDir ./edition-es2022-esm --project tsconfig.json && ( test ! -d edition-es2022-esm/source || ( mv edition-es2022-esm/source edition-temp && rm -rf edition-es2022-esm && mv edition-temp edition-es2022-esm ) ) && printf '%s' '{\"type\": \"module\"}' > edition-es2022-esm/package.json",
     "our:compile:edition-types": "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir ./edition-types --project tsconfig.json && ( test ! -d edition-types/source || ( mv edition-types/source edition-temp && rm -rf edition-types && mv edition-temp edition-types ) )",
@@ -213,7 +233,7 @@
     "our:verify:eslint": "eslint --fix --ignore-pattern '**/*.d.ts' --ignore-pattern '**/vendor/' --ignore-pattern '**/node_modules/' --ext .mjs,.js,.jsx,.ts,.tsx ./source",
     "our:verify:module": "valid-module",
     "our:verify:prettier": "prettier --write .",
-    "test": "node ./edition-es2022/test.js"
+    "test": "node ./test.cjs"
   },
   "eslintConfig": {
     "extends": [
