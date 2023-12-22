@@ -60,7 +60,7 @@ export function toJSON<T>(data: T): string {
 export async function writeJSON<T>(path: string, data: T): Promise<void> {
 	try {
 		const contents = toJSON<T>(data)
-		await write(path, contents)
+		await write(path, contents + '\n')
 	} catch (err: any) {
 		throw new Errlop(`failed to write the json for the file: ${path}`, err)
 	}

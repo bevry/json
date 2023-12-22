@@ -1,9 +1,17 @@
 {
   "name": "@bevry/json",
-  "version": "2.2.0",
+  "version": "2.2.1",
+  "license": "Artistic-2.0",
   "description": "Helpers for reading and writing JSON.",
   "homepage": "https://github.com/bevry/json",
-  "license": "Artistic-2.0",
+  "funding": "https://bevry.me/fund",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bevry/json.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bevry/json/issues"
+  },
   "keywords": [
     "browser",
     "deno",
@@ -64,21 +72,13 @@
       "npmPackageName": "@bevry/json"
     }
   },
-  "funding": "https://bevry.me/fund",
-  "author": "2020+ Benjamin Lupton <b@lupton.cc> (https://balupton.com)",
+  "author": "Benjamin Lupton <b@lupton.cc> (https://balupton.com)",
   "maintainers": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
   ],
   "contributors": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
   ],
-  "bugs": {
-    "url": "https://github.com/bevry/json/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bevry/json.git"
-  },
   "engines": {
     "node": ">=4"
   },
@@ -109,7 +109,7 @@
       }
     },
     {
-      "description": "TypeScript compiled against ES2022 for Node.js 21 with Require for modules",
+      "description": "TypeScript compiled against ES2022 for Node.js 8 || 10 || 12 || 14 || 16 || 18 || 20 || 21 with Require for modules",
       "directory": "edition-es2022",
       "entry": "index.js",
       "tags": [
@@ -124,7 +124,7 @@
       }
     },
     {
-      "description": "TypeScript compiled against ES2015 for Node.js 6 with Require for modules",
+      "description": "TypeScript compiled against ES2015 for Node.js 4 || 6 || 8 || 10 || 12 || 14 || 16 || 18 || 20 || 21 with Require for modules",
       "directory": "edition-es2015",
       "entry": "index.js",
       "tags": [
@@ -139,7 +139,7 @@
       }
     },
     {
-      "description": "TypeScript compiled against ES2022 for Node.js 21 with Import for modules",
+      "description": "TypeScript compiled against ES2022 for Node.js 12 || 14 || 16 || 18 || 20 || 21 with Import for modules",
       "directory": "edition-es2022-esm",
       "entry": "index.js",
       "tags": [
@@ -205,23 +205,22 @@
     "errlop": "^8.2.0"
   },
   "devDependencies": {
-    "@bevry/update-contributors": "^1.23.0",
-    "@types/node": "^20.10.3",
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
-    "assert-helpers": "^11.9.0",
-    "eslint": "^8.55.0",
-    "eslint-config-bevry": "^5.2.0",
+    "@types/node": "^20.10.5",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "assert-helpers": "^11.10.0",
+    "eslint": "^8.56.0",
+    "eslint-config-bevry": "^5.3.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-prettier": "^5.1.1",
     "kava": "^7.5.0",
-    "make-deno-edition": "^2.0.1",
-    "prettier": "^3.1.0",
+    "make-deno-edition": "^2.1.0",
+    "prettier": "^3.1.1",
     "projectz": "^3.4.0",
-    "promise-errback": "^1.1.0",
+    "promise-errback": "^1.2.0",
     "typedoc": "^0.25.4",
-    "typescript": "5.3.2",
-    "valid-directory": "^4.6.0",
+    "typescript": "5.3.3",
+    "valid-directory": "^4.7.0",
     "valid-module": "^2.6.0"
   },
   "scripts": {
@@ -234,8 +233,7 @@
     "our:compile:edition-es2022-esm": "tsc --module ESNext --target ES2022 --outDir ./edition-es2022-esm --project tsconfig.json && ( test ! -d edition-es2022-esm/source || ( mv edition-es2022-esm/source edition-temp && rm -rf edition-es2022-esm && mv edition-temp edition-es2022-esm ) ) && printf '%s' '{\"type\": \"module\"}' > edition-es2022-esm/package.json",
     "our:compile:edition-types": "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir ./edition-types --project tsconfig.json && ( test ! -d edition-types/source || ( mv edition-types/source edition-temp && rm -rf edition-types && mv edition-temp edition-types ) )",
     "our:deploy": "printf '%s\n' 'no need for this project'",
-    "our:meta": "npm run our:meta:contributors && npm run our:meta:docs && npm run our:meta:projectz",
-    "our:meta:contributors": "update-contributors",
+    "our:meta": "npm run our:meta:docs && npm run our:meta:projectz",
     "our:meta:docs": "npm run our:meta:docs:typedoc",
     "our:meta:docs:typedoc": "rm -rf ./docs && typedoc --exclude '**/+(*test*|node_modules)' --excludeExternals --out ./docs ./source",
     "our:meta:projectz": "projectz compile",
@@ -248,8 +246,7 @@
     "our:setup": "npm run our:setup:install",
     "our:setup:install": "npm install",
     "our:test": "npm run our:verify && npm test",
-    "our:verify": "npm run our:verify:directory && npm run our:verify:eslint && npm run our:verify:module && npm run our:verify:prettier",
-    "our:verify:directory": "valid-directory",
+    "our:verify": "npm run our:verify:eslint && npm run our:verify:module && npm run our:verify:prettier",
     "our:verify:eslint": "eslint --fix --ignore-pattern '**/*.d.ts' --ignore-pattern '**/vendor/' --ignore-pattern '**/node_modules/' --ext .mjs,.js,.jsx,.ts,.tsx ./source",
     "our:verify:module": "valid-module",
     "our:verify:prettier": "prettier --write .",
